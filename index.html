@@ -180,6 +180,8 @@ td.w{font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:.0
 .tab[aria-current="page"]{color:var(--fg);font-weight:600}
 .tab .logo{width:44px}
 
+.ver{margin-top:18px;font:300 11px var(--mono);letter-spacing:.08em;color:var(--muted)}
+
 /* progressive overload pop-up */
 .modal{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:rgba(15,15,14,.78);
   padding:20px max(20px,env(safe-area-inset-left,0px)) 20px max(20px,env(safe-area-inset-right,0px))}
@@ -224,7 +226,7 @@ const PLAN = [
     ["Pull-Ups","3","8-12","8-9","Bodyweight","3 min",""],
     ["T-Bar Row","2","6-9","8-9","90 lb","2 min",""],
     ["Farmer's Carries","2","2 mat runs","","315 lb","2 min",""],
-    ["Rear Delt Flies","3","7-12","10","70 kg","1:30",""],
+    ["Rear Delt Flies","5","7-12","10","70 kg","1:30",""],
     ["Rope Bicep Curl","3","10-15","10","140 lb","1:30",""],
     ["Abs","3","10-15","10","Bodyweight","1 min",""]]},
   {n:2, name:"Push 1", focus:"Military Press focus", ex:[
@@ -246,8 +248,8 @@ const PLAN = [
     ["Pull-Ups","3","6-9","9","Bodyweight","3 min",""],
     ["Rack Pulls","2","4-6","7-8","405 lb","3 min",""],
     ["Farmer's Carries","2","30-40 m","9","315 lb","2 min",""],
-    ["Rear Delt Flies","3","10-12","9","70 kg","1:30",""],
-    ["Dumbbell Curl","3","6-9","9","45 lb","1:30",""],
+    ["Rear Delt Flies","5","10-12","9","70 kg","1:30",""],
+    ["Dumbbell Curl","2","6-9","9","45 lb","1:30",""],
     ["Rope Curl","3","10-12","9","140 lb","1:30",""]]},
   {n:5, name:"Push 2", focus:"Military Press focus", ex:[
     ["Military Press","3","4-6","8-9","135 lb","3 min",""],
@@ -283,6 +285,7 @@ const INFO = {
 /* ---------- State ---------- */
 let S = { meta: { week: 1, notes: "", top: {} }, weeks: {} };   // weeks[n] = { logs: { "day:exIndex": [[weight, reps], ...] } }
 const ui = { view: "landing", day: 1, week: null, pday: 1, armed: false, status: "loading" };
+const VERSION = 5;   // bump by 1 on every new index.html
 const LS_KEY = "blackout-protocol:v1";
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -375,6 +378,7 @@ function renderLanding() {
     <div class="wkline">Week ${S.meta.week} · current</div>
     <div class="status" id="status"></div>
     <p class="quote">&quot;Can't have the outcome without the lifestyle&quot;</p>
+    <div class="ver">v${VERSION}</div>
   </section>`;
 }
 
